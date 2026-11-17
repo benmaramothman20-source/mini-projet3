@@ -1,0 +1,46 @@
+<div class="container">
+
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Nom Makeup en tapant</label>
+    <input type="text" class="form-control" [(ngModel)]="nomMakeup" name="nomMakeup" (ngModelChange)="rechercherMakeups()"
+      placeholder="Nom Makeup en tapant" />
+      
+    </div>
+  </form>
+
+
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Date Création</th>
+          <th>Type</th>
+        </tr>
+
+        @for (makeup of makeups | searchFilter: searchTerm; track makeup.idMakeup) {
+          <tbody>
+            <tr>
+              <td>{{ makeup.idMakeup }}</td>
+              <td>{{ makeup.nomMakeup }}</td>
+              <td>{{ makeup.prix }}</td>
+              <td>{{ makeup.dateCreation | date:'dd/MM/yyyy' }}</td>
+
+              @if (makeup.type) {
+                <td>{{ makeup.type.nomType }}</td>
+              }
+              @else {
+                <td>PAS DE TYPE</td>
+              }
+            </tr>
+          </tbody>
+        }
+
+      </table>
+    </div>
+  </div>
+</div>

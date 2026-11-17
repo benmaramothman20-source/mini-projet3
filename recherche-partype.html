@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <label>Types</label>
+
+    <select
+      class="form-control form-control-lg"
+      id="idType"
+      name="idType"
+      [(ngModel)]="idType"
+      (change)="onChange()">
+
+      <option [ngValue]="undefined">Choisir un type</option>
+
+      @for (t of types; track t.idType) {
+        <option [ngValue]="t.idType">
+          {{ t.nomType }}
+        </option>
+      }
+
+    </select>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Date Création</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (makeup of makeups; track makeup.idMakeup) {
+        <tr>
+          <td>{{ makeup.idMakeup }}</td>
+          <td>{{ makeup.nomMakeup }}</td>
+          <td>{{ makeup.prix }}</td>
+          <td>{{ makeup.dateCreation | date:'dd/MM/yyyy' }}</td>
+          <td>{{ makeup.type?.nomType }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>

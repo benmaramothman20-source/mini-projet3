@@ -1,0 +1,32 @@
+<div class="container">
+  <form>
+    @if (!ajout) {
+    <div class="form-group">
+      <label>Id Type</label>
+      <input
+        type="number"
+        name="idType"
+        class="form-control"
+        [(ngModel)]="typ.idType">
+    </div>}
+
+    <div class="form-group">
+<label>Nom Type</label>
+
+<input type="text" name="nomType" class="form-control" [(ngModel)]="typ.nomType" list="listeTypes"
+    placeholder="Entrez un nom de type...">
+
+<datalist id="listeTypes">
+    @for (t of types; track t.idType) {
+    <option [value]="t.nomType"></option>
+    }
+</datalist>
+</div>
+  </form>
+ 
+  <button type="button" class="btn btn-success"
+        (click)="saveType()">
+  {{ajout ? 'Ajouter' : ' Editer'}}
+</button>
+
+</div>
